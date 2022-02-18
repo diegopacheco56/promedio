@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promedio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head >
+<body  >
+<div id="app" >
+    <center>
+        <h1>Notas promedio</h1>
+        <br>
+        <div id="sty">
+            <h1>Datos Estudiantes</h1>
+    <table>
+        <tbody>
+            <tr><td>Nonbres </td> <td><input type="text"  placeholder="insert nombre" v-model="datos.nombre" required> </td> </tr>
+            <tr><td>apellidos</td> <td><input type="text"  placeholder="insert apellido" v-model="datos.apellido" required> </td> </tr>
+            <tr><td>nota 1</td> <td><input type="text" placeholder="insert nota" v-model="datos.num1" required> </td> </tr>
+            <tr><td>nota 2</td> <td><input type="text"  placeholder="insert nota" v-model="datos.num2" required> </td> </tr>
+            <tr><td>nota 3</td> <td><input type="text"  placeholder="insert nota" v-model="datos.num3" required> </td> </tr>
+        </tbody>
+    </table>
+    <br>
+    <div v-if="valor === 0"> 
+        <button v-on:click="agregar()">Calcular promedio</button>
+    </div>
+       <div v-else>
+        <button v-on:click="act2()">actualizar</button>
+       </div>
+       
+        <br>
+</div>
+
+        <h2>Listado Estudiantes</h2>
+    <br>
+    <table>
+        <thead > 
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Nota 1</th>
+            <th>Nota 2</th>
+            <th>Nota 3</th>
+            <th>Nota Final</th>
+            <th>Estado</th>
+            <th>Valoracion</th>
+            <th>Accion</th>
+   
+        </thead>
+             <tbody >
+              <tr v-for=" i in res">
+                <td>{{i.nombre}}</td>
+                <td>{{i.apellido}}</td>
+                <td>{{i.num1}}</td>
+                <td>{{i.num2}}</td>
+                <td>{{i.num3}}</td>
+                <td >{{prome(i.num1,i.num2,i.num3)}}</td>
+                <td>{{estado((i.num1+i.num2+i.num3)/3)}}</td>
+                <td>{{ Valoracion((i.num1+i.num2+i.num3)/3) }}</td>
+                <td><button id="rr" @click="eraser(i._id)" >Borrar</button> <button id="rt" @click="act1(i._id)" >Actualizar</button> </td>
+              </tr>
+             </tbody>
+    </table  >
+    
+</center>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
